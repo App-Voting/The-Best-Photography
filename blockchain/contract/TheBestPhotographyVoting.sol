@@ -10,7 +10,7 @@ import "./InitData.sol";
 /**
  * @title TheBestPhotography
  * @author Moderate97(^_^)
- * @dev Em-iu-oi-dang-o-dau-day--ve-voi-anh-di
+ * @dev Vk-oi-dang-o-dau-day--ve-voi-anh-di
  */
 contract TheBestPhotography is Ownable, InitData {
 

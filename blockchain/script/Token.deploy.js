@@ -12,7 +12,7 @@ async function main() {
   await token.deployed()
   console.log('token deployed to:', token.address)
 
-  await sleep(30000);
+  await sleep(5000);
 
   await hre.run('verify:verify', {
     address: token.address,
