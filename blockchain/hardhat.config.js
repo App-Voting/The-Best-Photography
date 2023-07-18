@@ -31,15 +31,20 @@ module.exports = {
       allowUnlimitedContractSize: true,
     },
     // testnet
-    goerli: {
-      url: `https://still-twilight-needle.ethereum-goerli.discover.quiknode.pro/3f299d81b648bddc3b5d17f0ea3cd872b158ab27/`,
+    baobab: {
+      url: `https://klaytn-baobab.blockpi.network/v1/rpc/public`,
       accounts: [ACCOUNT],
-      gasPrice: 100000000000,
+      timeout: 20000,
+    },
+     // testnet
+    goerli: {
+      url: `https://ethereum-goerli.publicnode.com`,
+      accounts: [ACCOUNT],
       timeout: 20000,
     },
     //mainnet
-    ethereum: {
-      url: `https://mainnet.infura.io/v3/${INFURA}`,
+    klay: {
+      url: `https://1rpc.io/klay`,
       accounts: [ACCOUNT],
       timeout: 20000,
     },

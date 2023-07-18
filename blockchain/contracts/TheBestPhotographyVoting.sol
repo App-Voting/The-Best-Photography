@@ -15,7 +15,7 @@ import "./InitData.sol";
 contract TheBestPhotography is Ownable, InitData {
 
     using SafeERC20 for IERC20;
-    mapping(uint256 => mapping(address => uint256)) internal amountPerVoter;
+    mapping(uint256 => mapping(address => uint256)) public amountPerVoter;
     uint256 public totalVote;
 
     uint256 private votingStartTime;
@@ -36,7 +36,7 @@ contract TheBestPhotography is Ownable, InitData {
         _initializeData();
         votingStartTime = startTime_;
         votingEndTime = endTime_;
-        TOKEN_VOTING = IERC20(0x0000000000000000000000000000000000000000);
+        TOKEN_VOTING = IERC20(0xfd278d17b0CA1973a0Ad10C9125603a55Be0405b);
     }
 
     modifier _checkDate() {
@@ -113,7 +113,7 @@ contract TheBestPhotography is Ownable, InitData {
     function updateVotingTime(uint256 startTime_, uint256 endTime_)
         public onlyOwner
     {
-        require(startTime_ > endTime_, 'input invalid');
+        require(startTime_ < endTime_, 'input invalid');
         votingStartTime = startTime_;
         votingEndTime = endTime_;
     }
