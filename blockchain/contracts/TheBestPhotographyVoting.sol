@@ -76,7 +76,7 @@ contract TheBestPhotography is Ownable, InitData {
     function withdraw() public _isWithdraw
     {
         uint256 reward = calReward(msg.sender);
-        TOKEN_VOTING.safeTransferFrom(address(this), msg.sender, reward);
+        TOKEN_VOTING.transfer(msg.sender, reward);
     }
 
     /**
