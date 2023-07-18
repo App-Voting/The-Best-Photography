@@ -35,7 +35,7 @@ contract TheBestPhotography is Ownable, InitData {
         _initializeData();
         votingStartTime = startTime_;
         votingEndTime = endTime_;
-        TOKEN_VOTING = IERC20(0xfd278d17b0CA1973a0Ad10C9125603a55Be0405b);
+        TOKEN_VOTING = IERC20(0x20fe7C3d1b76761E4A9D9ad244443c8985291645);
     }
 
     modifier _checkDate() {
