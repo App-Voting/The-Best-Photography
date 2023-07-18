@@ -7,15 +7,15 @@ function sleep(ms) {
 async function main() {
   // deploy
   const TBP = await hre.ethers.getContractFactory("TheBestPhotography");
-  const tbp = await TBP.deploy("0", "0", "https://github.com/App-Voting/The-Best-Photography/blob/main/blockchain");
+  const tbp = await TBP.deploy("1689575477", "1689748277", "https://github.com/App-Voting/The-Best-Photography/blob/main/blockchain");
   await tbp.deployed();
   console.log("tbp deployed to:", tbp.address);
 
-  await sleep(5000);
+  await sleep(10000);
 
   await hre.run("verify:verify", {
     address: tbp.address,
-    constructorArguments: ["0", "0", "https://github.com/App-Voting/The-Best-Photography/blob/main/blockchain"],
+    constructorArguments: ["1689575477", "1689748277", "https://github.com/App-Voting/The-Best-Photography/blob/main/blockchain"],
   });
 }
 

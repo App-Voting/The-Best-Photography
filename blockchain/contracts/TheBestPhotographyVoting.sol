@@ -124,11 +124,4 @@ contract TheBestPhotography is Ownable, InitData {
         votingStartTime = startTime_;
         votingEndTime = endTime_;
     }
-
-    function getInfoStateVoting() public view returns (Image[] memory images){
-        for (uint256 i = 1; i <= 5; i++) {
-            images[i] = imageId[i];
-        }
-        return images;
-    }
 }
