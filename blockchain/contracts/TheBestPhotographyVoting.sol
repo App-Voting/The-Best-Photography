@@ -22,7 +22,6 @@ contract TheBestPhotography is Ownable, InitData {
     uint256 private votingEndTime;
 
     uint256 constant REWARD_ARTIST = 500000000 * 10 ** 18;
-    uint256 constant REWARD_USER = 500000000 * 10 ** 18;
 
     IERC20 public TOKEN_VOTING;
 
@@ -76,16 +75,24 @@ contract TheBestPhotography is Ownable, InitData {
      */
     function withdraw() public _isWithdraw
     {
+        uint256 reward = calReward(msg.sender);
+        TOKEN_VOTING.safeTransferFrom(address(this), msg.sender, reward);
+    }
+
+    /**
+     * @dev used to calculate total reward of a account
+     */
+    function calReward(address account) public view returns (uint256)
+    {
         uint256 idWiner = checkWiner();
-        uint256 reward = amountPerVoter[idWiner][msg.sender];
-        uint256 rewardPeUserWiner = REWARD_USER / imageId[idWiner].amountVote;
-        if(msg.sender == artistId[idWiner]) {
+        uint256 reward = amountPerVoter[idWiner][account];
+        if(account == artistId[idWiner]) {
             reward += REWARD_ARTIST;
         }
-        if (amountPerVoter[idWiner][msg.sender] > 0) {
-            reward += rewardPeUserWiner * amountPerVoter[idWiner][msg.sender];
+        if (amountPerVoter[idWiner][account] > 0) {
+            reward += amountPerVoter[idWiner][account] * 5 / 100;
         }
-        TOKEN_VOTING.safeTransferFrom(address(this), artistId[idWiner], reward);
+        return reward;
     }
 
     /**
