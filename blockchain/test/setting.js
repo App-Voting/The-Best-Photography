@@ -48,13 +48,26 @@ async function checkBlance() {
     }
 }
 
+async function getStatus() {
+    try {
+        const contract = new web3.eth.Contract(
+            abi.abi,
+            "0x6cB65de4BcD3B40BE3996E2aD36FAb10B4aCB5E6",
+        )
+        const tx = await contract.methods.imageId("1").call();
+        console.log(tx);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 async function approve() {
     try {
         const contract = new web3.eth.Contract(
             abiToken.abi,
             "0x20fe7C3d1b76761E4A9D9ad244443c8985291645",
         )
-        const tx = await contract.methods.approve("0xfd278d17b0CA1973a0Ad10C9125603a55Be0405b", "999999999999999999999999999999");
+        const tx = await contract.methods.approve("0x6cB65de4BcD3B40BE3996E2aD36FAb10B4aCB5E6", "999999999999999999999999999999");
         await tx.estimateGas({
             from: "0xdEa238c24790b99BA33F48E4516307D4FFa1Cf1a",
         });
@@ -71,7 +84,7 @@ async function updateTimeVoting() {
     try {
         const contract = new web3.eth.Contract(
             abi.abi,
-            "0xfd278d17b0CA1973a0Ad10C9125603a55Be0405b",
+            "0x6cB65de4BcD3B40BE3996E2aD36FAb10B4aCB5E6",
         )
         const tx = await contract.methods.updateTimeVoting("", "");
         await tx.estimateGas({
@@ -89,7 +102,7 @@ async function vote() {
     try {
         const contract = new web3.eth.Contract(
             abi.abi,
-            "0xfd278d17b0CA1973a0Ad10C9125603a55Be0405b",
+            "0x6cB65de4BcD3B40BE3996E2aD36FAb10B4aCB5E6",
         )
         const tx = await contract.methods.vote("100000000000000000", "1");
         await tx.estimateGas({
@@ -107,7 +120,7 @@ async function withdraw() {
     try {
         const contract = new web3.eth.Contract(
             abi.abi,
-            "0xfd278d17b0CA1973a0Ad10C9125603a55Be0405b",
+            "0x6cB65de4BcD3B40BE3996E2aD36FAb10B4aCB5E6",
         )
         const tx = await contract.methods.withdraw();
         await tx.estimateGas({
@@ -124,9 +137,10 @@ async function withdraw() {
 // mint()
 // checkBlance()
 // approve()
-vote()
+// vote()
 // updateTimeVoting()
 // withdraw()
+getStatus()
     .then(() => process.exit(0))
     .catch((error) => {
         console.error(error)
